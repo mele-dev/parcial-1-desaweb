@@ -1,0 +1,3 @@
+- Levantar todos los servicios del docker-compose.yaml
+- Iniciar el frontend desde dentro del contenedor.
+- Iniciar el backend desde dentro del contenedor.

@@ -1,0 +1,8 @@
+<p>
+  @if (this.usuariosSignal.hasValue()) {
+    {{ this.usuariosSignal.value() | json }}
+  }
+  @else {
+    No hay usuarios
+  }
+</p>

@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "PostgresLocal": {
+      "Name": "PostgresLocal",
+      "Group": "Servers",
+      "Host": "db",
+      "Port": 5432,
+      "MaintenanceDB": "parcial1",
+      "Username": "parcial1",
+      "SSLMode": "prefer",
+      "Password": "parcial1"
+    }
+  }
+}

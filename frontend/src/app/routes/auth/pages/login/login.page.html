@@ -1,0 +1,10 @@
+<ion-content fullscreen class="ion-padding"> 
+  <ion-grid >
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-xl="3" size-lg="4" size-md="6" size-sm="8">
+        <app-login-form (submitted)="this.doAuth($event)"></app-login-form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
