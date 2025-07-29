@@ -1,3 +1,17 @@
-<p>
-  home works!
-</p>
+<ion-content class="ion-padding" scroll-y="false">
+        <ion-item>
+          <ion-select [(ngModel)]="id_departamento">
+            @for (depto of departamentos; track depto.id_departamento) {
+              <ion-select-option value="{{ depto.id_departamento }}">{{ depto.nombre }}</ion-select-option>
+            }
+          </ion-select>
+        </ion-item>
+
+        <ion-list>
+          @for (localidad of localidades; track localidad.id_localidad) {
+            <ion-item>
+              <ion-label>{{ localidad.nombre }}</ion-label>
+            </ion-item>
+          }
+        </ion-list>
+</ion-content> 

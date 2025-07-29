@@ -2,6 +2,7 @@ import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { departamentoRepository } from '../../services/departamentos.repository.js';
 import { Departamento } from '../../schemas/departamento.js';
 import { Type } from '@sinclair/typebox';
+import { Localidad } from '../../schemas/localidad.js';
 
 const departamentoRoutes: FastifyPluginAsyncTypebox = async (fastify, opts): Promise<void> => {
 
@@ -14,6 +15,7 @@ const departamentoRoutes: FastifyPluginAsyncTypebox = async (fastify, opts): Pro
         { bearerAuth: [] }
       ]
     },
+    // TODO: falta admin auth
     handler: async function (request, reply) {
       return departamentoRepository.getAll();
     }
@@ -39,6 +41,15 @@ const departamentoRoutes: FastifyPluginAsyncTypebox = async (fastify, opts): Pro
 
   fastify.get('/:id_departamento/localidades', {
     schema: {
+      params: Type.Object({
+        id_departamento: Type.Integer(),
+      }),
+      response: {
+        200: Type.Array(Localidad),
+        404: Type.Object({
+          message: Type.String(),
+        }),
+      },
       tags: ["departamentos"],
       summary: "Obtener listado de departamentos",
       description : "Obtener listado de departamentos",
@@ -46,8 +57,9 @@ const departamentoRoutes: FastifyPluginAsyncTypebox = async (fastify, opts): Pro
         { bearerAuth: [] }
       ]
     },
+    // TODO: falta admin auth
     handler: async function (request, reply) {
-      throw new Error("No implementado");
+      return departamentoRepository.getLocalidades(request.params.id_departamento);
     }
   })
 

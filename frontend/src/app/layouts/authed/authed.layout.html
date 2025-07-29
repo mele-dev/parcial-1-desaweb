@@ -7,9 +7,13 @@
     <ion-content class="ion-padding">
       <ion-menu-toggle>
         <ion-button routerLink="/home">Ir a Home</ion-button>
+        <ion-button routerLink="/localidades">Listado localidades</ion-button>
         <ion-button routerLink="/protegida">Ir a Protegida</ion-button>
         <ion-button routerLink="/protegida/usuarios">Ir a Usuarios</ion-button>
         <ion-button routerLink="/protegida/usuarios/crear">Crear Usuario</ion-button>
+        @if (this.mainStore.usuario()) {
+          <ion-button [routerLink]="['/protegida/usuarios', this.mainStore.usuario()?.id_usuario]">Editar mi Usuario</ion-button>
+        }
       </ion-menu-toggle>
     </ion-content>
   </ion-menu>

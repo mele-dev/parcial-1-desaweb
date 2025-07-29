@@ -36,8 +36,8 @@ class UsuarioRepository extends BaseRepository<Usuario> {
     throw new Error('Not implemented')
   }
 
-  async create(data: Usuario): Promise<Usuario> {
-    const consulta = "INSERT INTO usuarios (nombre, roles, password_hash) VALUES ($1, $2, crypt('contraseña', gen_salt('bf'))) RETURNING *";
+  async create(data: Omit<Usuario, "user_id">): Promise<Usuario> {
+    const consulta = "INSERT INTO usuarios (nombre, roles) VALUES ($1, $2) RETURNING *";
     const res = await myPool.query(consulta,[data.nombre,data.roles]);
     const id_usuario = res.rows[0].id_usuario;
     console.log({id_usuario});
@@ -45,7 +45,11 @@ class UsuarioRepository extends BaseRepository<Usuario> {
   }
 
   async update(id: string, data: Partial<Usuario>): Promise<Usuario> {
-    throw new Error('Not implemented')
+    const consulta = "UPDATE usuarios set nombre = $1, roles = $2 WHERE id_usuario = $3 RETURNING *";
+    const res = await myPool.query(consulta,[data.nombre,data.roles, id]);
+    const id_usuario = res.rows[0].id_usuario;
+    console.log({id_usuario});
+    return this.getById(id_usuario);
   }
 
   async erase(id: number): Promise<void> {

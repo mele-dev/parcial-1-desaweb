@@ -1,7 +1,23 @@
-<div>
-  <p> usuarios-modificar works! </p>
-  
-  @if(this.usuarioResource.hasValue()){
-    {{ this.usuarioResource.value() | json }}
-  }
-</div>
+<ion-content class="ion-padding" scroll-y="false">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="4">
+            <form>
+              <ion-input
+                class="ion-margin-top"
+                fill="outline"
+                label="Nombre"
+                label-placement="stacked"
+                name="name"
+                [(ngModel)]="name"
+                required
+              ></ion-input>
+
+              <ion-button expand="block" (click)="onSubmit()" class="ion-margin-top">
+                Guardar
+              </ion-button>
+            </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content> 
